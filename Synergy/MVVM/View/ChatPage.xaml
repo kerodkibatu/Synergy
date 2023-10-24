@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:DataType="vm:AppVM"
+             xmlns:vm="clr-namespace:Synergy.MVVM.ViewModel"
+             xmlns:m="clr-namespace:Synergy.MVVM.Model"
+             x:Class="Synergy.MVVM.View.ChatPage"
+             Title="ChatPage">
+    <ContentPage.Background>
+        <!-- StartPoint defaults to (0,0) -->
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#000004" Offset="0.1" />
+            <GradientStop Color="#7d1dc4" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Orientation="Vertical">
+            <CollectionView Rotation="180" ItemsSource="{Binding Messages}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Message">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <Border Grid.Column="{Binding Sender}" Rotation="180" StrokeShape="RoundRectangle 20">
+                                <Label Text="{Binding Content,StringFormat='  {0}'}" Margin="10"/>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <Grid Grid.Row="1" ColumnDefinitions="*,30">
+            <Entry x:Name="Entry1" Placeholder="Enter your message..." BackgroundColor="Black"/>
+            <Image Grid.Column="1" Source="sendicon.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Grid>
+</ContentPage>

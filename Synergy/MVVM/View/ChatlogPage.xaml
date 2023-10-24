@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Synergy.MVVM.View.ChatlogPage"
+              x:DataType="vm:AppVM"
+                xmlns:vm="clr-namespace:Synergy.MVVM.ViewModel"
+             Title="Video Matching">
+    <ContentPage.Background>
+        <!-- StartPoint defaults to (0,0) -->
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#000004" Offset="0.1" />
+            <GradientStop Color="#7d1dc4" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="*,400,30,400,*" RowDefinitions="400,30,60,*">
+            <Border Grid.Column="1" Grid.ColumnSpan="3">
+                <WebView Source="{Binding Address}"/>
+            </Border>
+            <Border Grid.Column="3" Scale="0.3" TranslationY="130" TranslationX="120">
+                <WebView Source="http://localhost:5000/video_feed_own"/>
+            </Border>
+            <Button BackgroundColor="GreenYellow" Grid.Row="2" Grid.Column="1" Text="Start Call"/>
+            <Button BackgroundColor="OrangeRed" Grid.Row="2" Grid.Column="3" Text="End Call"/>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

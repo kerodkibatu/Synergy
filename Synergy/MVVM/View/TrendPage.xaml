@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Synergy.MVVM.ViewModel"
+             xmlns:m="clr-namespace:Synergy.MVVM.Model"
+             x:Class="Synergy.MVVM.View.TrendPage"
+             x:DataType="vm:AppVM"
+             Title="Topics">
+    <VerticalStackLayout>
+        <SearchBar Placeholder="Search topics..."/>
+        <Label Text="Select Your Interests!" FontSize="Header" Margin="10"/>
+        <ScrollView Orientation="Vertical">
+            <CollectionView ItemsSource="{Binding Trends}" SelectionMode="Multiple">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="4"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Border StrokeShape="RoundRectangle 10" Padding="10" Margin="5">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal"></VisualState>
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#9A7CAD"></Setter>
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            <Grid ColumnDefinitions="30,*">
+                                <Image Source="hashicon.png"/>
+                                <Label Grid.Column="1" Text="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

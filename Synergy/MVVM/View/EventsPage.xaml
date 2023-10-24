@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Synergy.MVVM.ViewModel"
+             xmlns:m="clr-namespace:Synergy.MVVM.Model"
+             x:Class="Synergy.MVVM.View.EventsPage"
+             x:DataType="vm:AppVM"
+             Title="Events">
+    <ContentPage.Background>
+        <!-- StartPoint defaults to (0,0) -->
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#000004" Offset="0.1" />
+            <GradientStop Color="#7d1dc4" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <VerticalStackLayout>
+        <SearchBar Placeholder="Search nearby events..."/>
+        <Label Text="Featured Events" FontSize="32" Margin="10"/>
+        <ScrollView Orientation="Horizontal" HeightRequest="150">
+            <CollectionView ItemsSource="{Binding FeaturedEvents}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Event">
+                        <Border StrokeShape="RoundRectangle 10" Padding="10" Margin="5">
+                            <Grid RowDefinitions="Auto,*,Auto" WidthRequest="300" ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding Name}"/>
+                                <Label Grid.Column="1" Text="{Binding Hoster}"/>
+                                <Label Grid.Row="1" Text="{Binding Date}"/>
+                                <Label Grid.Row="2" Text="{Binding Address}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <Label Text="Ongoing Events" FontSize="32" Margin="10"/>
+        <ScrollView Orientation="Horizontal" HeightRequest="150">
+            <CollectionView ItemsSource="{Binding OngoingEvents}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Event">
+                        <Border StrokeShape="RoundRectangle 10" Padding="10" Margin="5">
+                            <Grid RowDefinitions="Auto,*,Auto" WidthRequest="300" ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding Name}"/>
+                                <Label Grid.Column="1" Text="{Binding Hoster}"/>
+                                <Label Grid.Row="1" Text="{Binding Date}"/>
+                                <Label Grid.Row="2" Text="{Binding Address}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <Label Text="Upcoming Events" FontSize="32" Margin="10"/>
+        <ScrollView Orientation="Horizontal">
+            <CollectionView ItemsSource="{Binding UpComingEvents}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Event">
+                        <Border StrokeShape="RoundRectangle 10" Padding="10" Margin="5">
+                            
+                            <Grid RowDefinitions="Auto,*,Auto" MinimumWidthRequest="400" ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding Name}"/>
+                                <Label Grid.Column="1" Text="{Binding Hoster}"/>
+                                <Button HorizontalOptions="Start" Grid.Row="2" Text="Sign Up" WidthRequest="120" HeightRequest="40"/>
+                                <Label Grid.Row="1" Text="{Binding Date}"/>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Address}" VerticalOptions="End" HorizontalOptions="End"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
